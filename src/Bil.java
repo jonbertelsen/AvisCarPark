@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public abstract class Bil {
 
     // Attributter
@@ -6,6 +8,7 @@ public abstract class Bil {
     private String maerke;
     private String model;
     private int aargang;
+    private int antalDoere;
 
     // Metoder
 
@@ -16,13 +19,15 @@ public abstract class Bil {
         this.maerke = "";
         this.model = "";
         this.aargang = 0;
+        this.antalDoere = 0;
     }
 
-    public Bil(String regNr, String maerke, String model, int aargang){
+    public Bil(String regNr, String maerke, String model, int aargang, int antalDoere){
         this.regNr = regNr;
         this.maerke = maerke;
         this.model = model;
         this.aargang = aargang;
+        this.antalDoere = antalDoere;
     }
 
     // Gettere og settere
@@ -60,7 +65,20 @@ public abstract class Bil {
         this.aargang = aargang;
     }
 
-    public String visBil(){
-        return String.format("%s %s %s %d",regNr,maerke,model,aargang);
+    public int getAntalDoere() {
+        return antalDoere;
     }
+
+    public String visBil(){
+        return String.format("%s %s %s %d",regNr,maerke,model,aargang, antalDoere);
+    }
+
+    public void bygAttributListe(ArrayList<String> attributListe){
+        attributListe.add(Main.BRIK_REGNR + "," + regNr);
+        attributListe.add(Main.BRIK_MAERKE + "," + maerke);
+        attributListe.add(Main.BRIK_MODEL + "," + model);
+        attributListe.add(Main.BRIK_AARGANG + "," + Integer.toString(aargang));
+        attributListe.add(Main.BRIK_ANTALDOERE + "," + Integer.toString(antalDoere));
+    }
+
 }
